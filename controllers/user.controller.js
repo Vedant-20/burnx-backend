@@ -240,10 +240,10 @@ const getSuggestedUsers = async (req, res) => {
 
 const getCurrentUser = async (req, res) => {
   try {
-    const userId = req?.user?._id;
-    const user = await User.findById(userId);
+    // const userId = req?.user?._id;
+    // const user = await User.findById(userId);
 
-    res.status(200).json(user);
+    res.status(200).json(req?.user);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
