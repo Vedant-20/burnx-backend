@@ -17,7 +17,7 @@ router.route("/feed").get(verifyJWT, getFeedPosts);
 
 router.route("/:id").get(getPost);
 
-router.route("/user/:username").get(getUserPosts);
+router.route("/user/:username").get(verifyJWT, getUserPosts);
 
 router.route("/create").post(verifyJWT, createPost);
 
