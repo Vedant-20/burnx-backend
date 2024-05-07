@@ -265,6 +265,37 @@ const freezeAccount = async (req, res) => {
   }
 };
 
+const SearchUser = async (req, res) => {
+  try {
+    const { uid } = req?.params;
+
+    const user = await User.find({
+      $or: [
+        {
+          name: uid,
+        },
+        {
+          username: uid,
+        },
+        {
+          email: uid,
+        },
+        {
+          bio: uid,
+        },
+      ],
+    }).select("-password");
+
+    if (user) {
+      res.status(200).json(user);
+    } else {
+      res.status(200).json({ message: "No User found" });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export {
   getUserProfile,
   signupUser,
@@ -275,4 +306,5 @@ export {
   getSuggestedUsers,
   freezeAccount,
   getCurrentUser,
+  SearchUser,
 };

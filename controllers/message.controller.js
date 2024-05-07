@@ -6,12 +6,17 @@ import { v2 as cloudinary } from "cloudinary";
 async function sendMessage(req, res) {
   try {
     const { recipientId, message } = req.body;
+    console.log(recipientId, message, "check 1");
     let { img } = req.body;
-    const senderId = req.user._id;
+    const senderId = req.user._id.toString();
+
+    console.log(senderId, "check2");
 
     let conversation = await Conversation.findOne({
       participants: { $all: [senderId, recipientId] },
     });
+
+    // console.log(conversation, "check3");
 
     if (!conversation) {
       conversation = new Conversation({
@@ -21,7 +26,10 @@ async function sendMessage(req, res) {
           sender: senderId,
         },
       });
+      // console.log(conversation, "check3");
       await conversation.save();
+
+      // console.log(conversation, "check4");
     }
 
     if (img) {

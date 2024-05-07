@@ -20,7 +20,7 @@ export const verifyJWT = async (req, res, next) => {
     req.user = user;
     next();
   } catch (error) {
-    res.status(500).json({ message: err.message });
-    console.log("Error in signupUser: ", err.message);
+    res.status(500).json({ message: error.message });
+    console.log("Error in signupUser: ", error.message);
   }
 };

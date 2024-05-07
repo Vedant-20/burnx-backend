@@ -1,6 +1,7 @@
 import express from "express";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 import {
+  SearchUser,
   followUnFollowUser,
   freezeAccount,
   getCurrentUser,
@@ -15,6 +16,8 @@ import {
 const router = express.Router();
 
 router.route("/profile/:query").get(getUserProfile);
+
+router.route("/search/:uid").post(SearchUser);
 
 router.route("/get-current-user").get(verifyJWT, getCurrentUser);
 
