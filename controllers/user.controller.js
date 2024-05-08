@@ -148,10 +148,10 @@ const followUnFollowUser = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-  const { name, email, username, password, bio } = req.body;
-  let { profilePic } = req.body;
+  const { name, email, username, password, bio } = req?.body;
+  let { profilePic } = req?.body;
 
-  const userId = req.user._id;
+  const userId = req?.user?._id;
   try {
     let user = await User.findById(userId);
     if (!user) return res.status(400).json({ error: "User not found" });
@@ -272,9 +272,6 @@ const SearchUser = async (req, res) => {
     const user = await User.find({
       $or: [
         {
-          name: uid,
-        },
-        {
           username: uid,
         },
         {
@@ -282,6 +279,9 @@ const SearchUser = async (req, res) => {
         },
         {
           bio: uid,
+        },
+        {
+          name: uid,
         },
       ],
     }).select("-password");

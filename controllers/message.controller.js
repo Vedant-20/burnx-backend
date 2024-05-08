@@ -6,11 +6,11 @@ import { v2 as cloudinary } from "cloudinary";
 async function sendMessage(req, res) {
   try {
     const { recipientId, message } = req.body;
-    console.log(recipientId, message, "check 1");
+    // console.log(recipientId, message, "check 1");
     let { img } = req.body;
     const senderId = req.user._id.toString();
 
-    console.log(senderId, "check2");
+    // console.log(senderId, "check2");
 
     let conversation = await Conversation.findOne({
       participants: { $all: [senderId, recipientId] },
