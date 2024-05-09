@@ -13,7 +13,7 @@ job.start();
 
 connectDB();
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 5736;
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -32,7 +32,6 @@ app.use(cookieParser());
 import userRoutes from "./routes/user.routes.js";
 import postRoutes from "./routes/post.routes.js";
 import messageRoutes from "./routes/message.routes.js";
-import job from "./cron/cron.js";
 
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/posts", postRoutes);
