@@ -296,6 +296,14 @@ const SearchUser = async (req, res) => {
   }
 };
 
+const HealthCheck = async (req, res) => {
+  try {
+    res.status(200).json({ message: "Health Tested" });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export {
   getUserProfile,
   signupUser,
@@ -307,4 +315,5 @@ export {
   freezeAccount,
   getCurrentUser,
   SearchUser,
+  HealthCheck,
 };

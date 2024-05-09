@@ -5,8 +5,11 @@ import { v2 as cloudinary } from "cloudinary";
 import { app, server } from "./socket/socket.js";
 import connectDB from "./db/connectDB.js";
 import cors from "cors";
+import job from "./cron/cron.js";
 
 dotenv.config();
+
+job.start();
 
 connectDB();
 
@@ -29,6 +32,7 @@ app.use(cookieParser());
 import userRoutes from "./routes/user.routes.js";
 import postRoutes from "./routes/post.routes.js";
 import messageRoutes from "./routes/message.routes.js";
+import job from "./cron/cron.js";
 
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/posts", postRoutes);

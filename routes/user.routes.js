@@ -1,6 +1,7 @@
 import express from "express";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 import {
+  HealthCheck,
   SearchUser,
   followUnFollowUser,
   freezeAccount,
@@ -34,5 +35,7 @@ router.route("/follow/:id").post(verifyJWT, followUnFollowUser);
 router.route("/update/:id").put(verifyJWT, updateUser);
 
 router.route("/freeze").put(verifyJWT, freezeAccount);
+
+router.route("/health-check").get(HealthCheck);
 
 export default router;
