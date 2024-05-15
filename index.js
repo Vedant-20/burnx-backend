@@ -9,7 +9,7 @@ import job from "./cron/cron.js";
 
 dotenv.config();
 
-job.start();
+// job.start();
 
 connectDB();
 
